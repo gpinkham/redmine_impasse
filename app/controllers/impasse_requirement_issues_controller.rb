@@ -65,25 +65,26 @@ class ImpasseRequirementIssuesController < ImpasseAbstractController
                               :limit => @limit)
       @issue_count_by_group = @query.issue_count_by_group
       @issues_with_tests = []
+      @cf = IssueCustomField.find_by_name('Requirement Number')
       if params[:format] == 'csv'
-        @issues_with_tests << 'Requirement #,User Requirement,Test Case,Step,Procedure,Expected Result,Actual Result, Pass/Fail,Initial/Date'
+        @issues_with_tests << 'Issue #, Requirement #,User Requirement,Test Case,Step,Procedure,Expected Result,Actual Result, Pass/Fail,Initial/Date'
         @issues.each do |issue|
           if issue.test_cases.present?
             issue.test_cases.each_with_index do |tc, index|
               tc.test_steps.each_with_index do |ts, ts_index|
                 if (index == 0 && ts_index == 0)
-                  @issues_with_tests << "#{issue.id},\"#{issue.description.gsub('"','\""')}\",\"#{tc.id}: #{tc.node.name.gsub('"','\""')}\",#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
+                  @issues_with_tests << "#{issue.id},#{issue.custom_field_value(@cf)},\"#{issue.description.gsub('"','\""')}\",\"#{tc.id}: #{tc.node.name.gsub('"','\""')}\",#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
                 else
                   if (ts_index == 0)
-                    @issues_with_tests << ",,\"#{tc.id}: #{tc.node.name.gsub('"','\""')}\",#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
+                    @issues_with_tests << ",,,\"#{tc.id}: #{tc.node.name.gsub('"','\""')}\",#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
                   else
-                    @issues_with_tests << ",,,#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
+                    @issues_with_tests << ",,,,#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
                   end
                 end
               end
             end
           else
-            @issues_with_tests << "#{issue.id},\"#{issue.description.gsub('"','\""')}\",Not Assigned,,,,,,"
+            @issues_with_tests << "#{issue.id},#{issue.custom_field_value(@cf)},\"#{issue.description.gsub('"','\""')}\",Not Assigned,,,,,,"
           end
         end
       end

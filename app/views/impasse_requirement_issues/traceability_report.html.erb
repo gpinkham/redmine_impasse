@@ -53,6 +53,7 @@
         <thead>
         <tr>
             <th>#</th>
+            <th>Requirement #</th>
             <th><%= l(:field_subject) %></th>
             <th>Test Case</th>
             <th>Step #</th>
@@ -70,6 +71,7 @@
                     <td class="id">
                       <%= h(issue.id) %>
                     </td>
+                    <td>h(issue.custom_field_value(@cf))</td>
                     <td class="subject">
                       <%= h(truncate(issue.subject, :length => 60)) %> (<%= h issue.status %>)
                     </td>
@@ -77,6 +79,7 @@
                     <td class="id">
                       &nbsp;
                     </td>
+                    <td>h(issue.custom_field_value(@cf))</td>
                     <td class="subject">
                       &nbsp;
                     </td>
@@ -97,7 +100,8 @@
                 <td class="id">
                     <%= h(issue.id) %>
                 </td>
-                <td class="subject">
+              <td>h(issue.custom_field_value(@cf))</td>
+              <td class="subject">
                     <%= h(truncate(issue.subject, :length => 60)) %> (<%= h issue.status %>)
                 </td>
                 <td>Not Assigned</td>
