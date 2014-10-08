@@ -72,18 +72,18 @@ class ImpasseRequirementIssuesController < ImpasseAbstractController
             issue.test_cases.each_with_index do |tc, index|
               tc.test_steps.each_with_index do |ts, ts_index|
                 if (index == 0 && ts_index == 0)
-                  @issues_with_tests << "#{issue.id},\"#{issue.subject}\",\"#{tc.id}: #{tc.node.name}\",#{ts.step_number},\"#{ts.actions}\",\"#{ts.expected_results}\",,,"
+                  @issues_with_tests << "#{issue.id},\"#{issue.subject.gsub('"','\""')}\",\"#{tc.id}: #{tc.node.name.gsub('"','\""')}\",#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
                 else
                   if (ts_index == 0)
-                    @issues_with_tests << ",,\"#{tc.id}: #{tc.node.name}\",#{ts.step_number},\"#{ts.actions}\",\"#{ts.expected_results}\",,,"
+                    @issues_with_tests << ",,\"#{tc.id}: #{tc.node.name.gsub('"','\""')}\",#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
                   else
-                    @issues_with_tests << ",,,#{ts.step_number},\"#{ts.actions}\",\"#{ts.expected_results}\",,,"
+                    @issues_with_tests << ",,,#{ts.step_number},\"#{ts.actions.gsub('"','\""')}\",\"#{ts.expected_results.gsub('"','\""')}\",,,"
                   end
                 end
               end
             end
           else
-            @issues_with_tests << "#{issue.id},\"#{issue.subject}\",Not Assigned,,,,,,"
+            @issues_with_tests << "#{issue.id},\"#{issue.subject.gsub('"','\""')}\",Not Assigned,,,,,,"
           end
         end
       end
