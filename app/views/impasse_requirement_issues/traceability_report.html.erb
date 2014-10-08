@@ -71,7 +71,7 @@
                     <td class="id">
                       <%= h(issue.id) %>
                     </td>
-                    <td>h(issue.custom_field_value(@cf))</td>
+                    <td><%= h(issue.custom_field_value(@cf))%></td>
                     <td class="subject">
                       <%= h(truncate(issue.subject, :length => 60)) %> (<%= h issue.status %>)
                     </td>
@@ -79,7 +79,7 @@
                     <td class="id">
                       &nbsp;
                     </td>
-                    <td>h(issue.custom_field_value(@cf))</td>
+                    <td><%= h(issue.custom_field_value(@cf))%></td>
                     <td class="subject">
                       &nbsp;
                     </td>
@@ -100,7 +100,7 @@
                 <td class="id">
                     <%= h(issue.id) %>
                 </td>
-              <td>h(issue.custom_field_value(@cf))</td>
+              <td><%= h(issue.custom_field_value(@cf))%></td>
               <td class="subject">
                     <%= h(truncate(issue.subject, :length => 60)) %> (<%= h issue.status %>)
                 </td>
