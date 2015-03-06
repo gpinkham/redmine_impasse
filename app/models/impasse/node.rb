@@ -1,7 +1,7 @@
 module Impasse
   class Node < ActiveRecord::Base
     unloadable
-    set_table_name "impasse_nodes"
+    self.table_name = "impasse_nodes"
     self.include_root_in_json = false
 
     belongs_to :parent, :class_name=>'Node', :foreign_key=> :parent_id

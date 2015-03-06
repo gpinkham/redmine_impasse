@@ -1,7 +1,7 @@
 module Impasse
   class ExecutionHistory < ActiveRecord::Base
     unloadable
-    set_table_name "impasse_execution_histories"
+    self.table_name = "impasse_execution_histories"
     self.include_root_in_json = false
 
     belongs_to :test_plan_case

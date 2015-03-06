@@ -1,7 +1,7 @@
 module Impasse
   class Statistics < ActiveRecord::Base
     unloadable
-    set_table_name 'impasse_test_plans'
+    self.table_name = 'impasse_test_plans'
     self.include_root_in_json = false
 
     def self.summary_default(test_plan_id, test_suite_id=nil)

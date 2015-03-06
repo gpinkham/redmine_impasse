@@ -1,7 +1,7 @@
 module Impasse
   class TestCase < ActiveRecord::Base
     unloadable
-    set_table_name "impasse_test_cases"
+    self.table_name = "impasse_test_cases"
     self.include_root_in_json = false
     
     has_many :test_steps, :dependent=>:destroy, :order => "step_number"
