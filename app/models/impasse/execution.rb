@@ -1,7 +1,7 @@
 module Impasse
   class Execution < ActiveRecord::Base
     unloadable
-    set_table_name "impasse_executions"
+    self.table_name =  "impasse_executions"
     self.include_root_in_json = false
 
     belongs_to :test_plan_case

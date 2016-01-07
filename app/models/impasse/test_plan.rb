@@ -1,7 +1,7 @@
 module Impasse
   class TestPlan < ActiveRecord::Base
     unloadable
-    set_table_name "impasse_test_plans"
+    self.table_name = "impasse_test_plans"
     self.include_root_in_json = false
 
     has_many :test_plan_cases

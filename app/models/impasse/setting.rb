@@ -1,7 +1,7 @@
 module Impasse
   class Setting < ActiveRecord::Base
     unloadable
-    set_table_name "impasse_settings"
+    self.table_name = "impasse_settings"
 
     serialize :requirement_tracker
 
