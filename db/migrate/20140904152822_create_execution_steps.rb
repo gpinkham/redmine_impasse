@@ -9,7 +9,7 @@ class CreateExecutionSteps < ActiveRecord::Migration
       t.column :notes, :text
     end
 
-    add_index :impasse_execution_steps, :test_plan_case_id, :name => 'IDX_IMPASSE_EXECUTION_STEPS_01'
+#    add_index :impasse_execution_steps, :test_plan_case_id, :name => 'IDX_IMPASSE_EXECUTION_STEPS_01'
     add_index :impasse_execution_steps, :tester_id, :name => 'IDX_IMPASSE_EXECUTION_STEPS_02'
     add_index :impasse_execution_steps, :execution_ts, :name => 'IDX_IMPASSE_EXECUTION_STEPS_03'
   end
